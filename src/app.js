@@ -35,6 +35,8 @@ function App() {
       }
       return emailA;
     });
+    setFilterRead(checkedEmails.filter((email) => !email.read === true));
+    setFilterStarred(checkedEmails.filter((email) => email.starred === true));
     setEmails(checkedEmails);
   };
   const toggleStar = (email) => {
@@ -44,8 +46,9 @@ function App() {
       }
       return emailA;
     });
+    setFilterStarred(starredEmails.filter((email) => email.starred === true));
+    setFilterRead(starredEmails.filter((email) => !email.read === true));
     setEmails(starredEmails);
-    setFilterStarred(emails.filter((email) => email.starred === true));
   };
 
   const renderUnreadEmails = () => {
@@ -75,7 +78,7 @@ function App() {
             }}
           >
             <span className="label">Inbox</span>
-            <span className="count">{emails.length + 1}</span>
+            <span className="count">{emails.length}</span>
           </li>
           <li
             className={`item starred ${starredIsChecked && "active"}`}
